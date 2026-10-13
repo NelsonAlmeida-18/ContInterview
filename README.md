@@ -21,6 +21,14 @@ reusable Terraform code while applying fundamental AWS networking concepts.
 |---|---|---|
 | [`infrastructure/modules/vpc`](infrastructure/modules/vpc) | Reusable VPC module: VPC, IGW, public/private subnets, route tables | The deliverable. No provider or backend, so it works in any account/region |
 
+## Quick start
+
+```bash
+cd infrastructure/examples/basic
+terraform init && terraform validate
+terraform plan                 # needs AWS credentials (not required by the assignment)
+```
+
 Tests and checks need no AWS credentials:
 
 ```bash
