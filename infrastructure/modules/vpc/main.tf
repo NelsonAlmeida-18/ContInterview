@@ -31,3 +31,42 @@ resource "aws_subnet" "private" {
 
   tags = merge(var.tags, { Name = "${var.name}-private-${each.key}", Tier = "private" })
 }
+
+resource "aws_route_table" "public" {
+  vpc_id = local.vpc_id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.igw.id
+  }
+
+  tags = merge(var.tags, { Name = "${var.name}-public" })
+}
+
+resource "aws_route_table" "private" {
+  vpc_id = local.vpc_id
+
+  route = []
+
+  tags = merge(var.tags, { Name = "${var.name}-private" })
+}
+
+resource "aws_route_table_association" "public" {
+  for_each = aws_subnet.public
+
+  subnet_id      = each.value.id
+  route_table_id = aws_route_table.public.id
+}
+
+resource "aws_route_table_association" "private" {
+  for_each = aws_subnet.private
+
+  subnet_id      = each.value.id
+  route_table_id = aws_route_table.private.id
+}
+
+resource "aws_internet_gateway" "igw" {
+  vpc_id = local.vpc_id
+
+  tags = merge(var.tags, { Name = var.name })
+}
