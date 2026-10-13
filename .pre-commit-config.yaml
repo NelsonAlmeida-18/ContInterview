@@ -18,4 +18,4 @@ repos:
     rev: 3.3.26
     hooks:
       - id: checkov
-        args: [--framework, terraform, --quiet, --compact]
+        args: [--framework, terraform, --quiet, --compact, --baseline, .checkov.baseline]
