@@ -10,16 +10,18 @@ reusable Terraform code while applying fundamental AWS networking concepts.
 
 ```
 .
-├── .github/workflows/ci.yml       # pre-commit + terraform test, no AWS credentials
-├── .pre-commit-config.yaml       
-├── .terraform-version            
+├── .github/workflows/pr_workflow.yml  # pre-commit + terraform test, no AWS credentials
+├── .pre-commit-config.yaml
+├── .terraform-version
 └── infrastructure/
-    ├── modules/vpc/              
+    ├── modules/vpc/               # the module
+    └── examples/basic/            # example consumer (assignment reference input)
 ```
 
 | Path | What it is | Why it exists |
 |---|---|---|
 | [`infrastructure/modules/vpc`](infrastructure/modules/vpc) | Reusable VPC module: VPC, IGW, public/private subnets, route tables | The deliverable. No provider or backend, so it works in any account/region |
+| [`infrastructure/examples/basic`](infrastructure/examples/basic) | Root configuration calling the module with the assignment's example input | Shows how the module is consumed |
 
 ## Quick start
 

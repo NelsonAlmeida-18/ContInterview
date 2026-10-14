@@ -19,7 +19,7 @@ output "private_subnet_ids" {
 
 output "public_route_table_id" {
   description = "Public Routing Table ID"
-  value       = aws_route_table.public.id
+  value       = one(aws_route_table.public[*].id)
 }
 
 output "public_subnet_ids" {

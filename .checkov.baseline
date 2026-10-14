@@ -1,22 +1,27 @@
 {
-  "failed_checks": [
-    {
-      "file": "/infrastructure/modules/vpc/main.tf",
-      "findings": [
+    "failed_checks": [
         {
-          "resource": "aws_vpc.vpc",
-          "check_ids": [
-            "CKV2_AWS_11",
-            "CKV2_AWS_12"
-          ]
-        },
-        {
-          "resource": "aws_subnet.public",
-          "check_ids": [
-            "CKV_AWS_130"
-          ]
+            "file": "/infrastructure/modules/vpc/main.tf",
+            "findings": [
+                {
+                    "resource": "module.vpc.aws_subnet.public[\"a\"]",
+                    "check_ids": [
+                        "CKV_AWS_130"
+                    ]
+                },
+                {
+                    "resource": "module.vpc.aws_subnet.public[\"b\"]",
+                    "check_ids": [
+                        "CKV_AWS_130"
+                    ]
+                },
+                {
+                    "resource": "module.vpc.aws_vpc.vpc",
+                    "check_ids": [
+                        "CKV2_AWS_11"
+                    ]
+                }
+            ]
         }
-      ]
-    }
-  ]
+    ]
 }
