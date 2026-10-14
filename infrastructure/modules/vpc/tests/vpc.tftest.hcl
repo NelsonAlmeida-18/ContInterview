@@ -19,7 +19,7 @@ variables {
 }
 
 run "creates_vpc_subnets_and_routing" {
-  command = apply 
+  command = apply
 
   assert {
     condition     = aws_vpc.vpc.enable_dns_support && aws_vpc.vpc.enable_dns_hostnames
